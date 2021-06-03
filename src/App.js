@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import { ChakraProvider } from "@chakra-ui/react"
+import Home from "./components/Home";
+import PokemonDetails from "./components/PokemonDetails";
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import SavedPokemon from "./components/SavedPokemon";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <ChakraProvider>
+    <Router>
+      <Switch>
+        <Route path="/" exact>
+          <Home/>
+        </Route>
+        <Route path="/saved" exact>
+          <SavedPokemon/>
+        </Route>
+        <Route path="/pokemon/:name">
+          <PokemonDetails />
+        </Route>
+      </Switch>
+    </Router>
+    </ChakraProvider>
+  )
 }
 
 export default App;
